@@ -1,10 +1,5 @@
-#include <iostream>
 #include "../include/vol.h"
-#include "../include/validator.h"
-#include <boost/date_time/posix_time/posix_time.hpp>
 
-using namespace std;
-using namespace boost::posix_time;
 
 Vol::Vol(){
     _passagers = NULL;

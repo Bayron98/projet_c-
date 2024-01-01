@@ -1,10 +1,13 @@
 #include <iostream>
 #include "../include/avion.h"
 #include "../include/passager.h"
+#include "../include/validator.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/date_time/gregorian/gregorian.hpp>
 
 using namespace std;
 using namespace boost::posix_time;
+using namespace boost::gregorian;
 
 class Vol
 {

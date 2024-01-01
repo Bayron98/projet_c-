@@ -1,6 +1,4 @@
-#include <iostream>
 #include "../include/passager.h"
-using namespace std;
 
 Passager::Passager(){
 
