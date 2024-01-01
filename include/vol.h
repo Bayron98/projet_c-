@@ -1,3 +1,7 @@
+#ifndef VOL_H
+#define VOL_H
+
+
 #include <iostream>
 #include "../include/avion.h"
 #include "../include/passager.h"
@@ -51,3 +55,5 @@ public:
     bool remove(Passager*);
     int find(Passager*);
 };
+
+#endif

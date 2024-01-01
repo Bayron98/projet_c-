@@ -1,0 +1,1 @@
+g++ src/app.cpp  src/avion.cpp  src/gestion_vols.cpp src/gestion_avions.cpp src/gestion_passagers.cpp  src/passager.cpp  src/validator.cpp  src/vol.cpp main.cpp -o main -L /usr/lib/ -lboost_date_time

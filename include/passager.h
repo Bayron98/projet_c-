@@ -1,3 +1,6 @@
+#ifndef PASSAGER_H
+#define PASSAGER_H
+
 #include <iostream>
 
 using namespace std;
@@ -40,3 +43,5 @@ public:
     // comparer
     bool comparer(Passager *);
 };
+
+#endif

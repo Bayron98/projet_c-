@@ -1,3 +1,6 @@
+#ifndef AVION_H
+#define AVION_H
+
 #include <iostream>
 #include "../include/validator.h"
 #include <boost/date_time/gregorian/gregorian.hpp>
@@ -40,3 +43,4 @@ class Avion{
 
 
 };
+#endif
