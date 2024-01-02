@@ -8,6 +8,7 @@
 #include "../include/gestion_avions.h"
 #include "../include/gestion_passagers.h"
 #include "../include/validator.h"
+#include "../include/routers.h"
 
 using namespace std;
 
@@ -32,6 +33,10 @@ public:
     bool friend if_exist(Passager **, int &, Passager *);
     bool friend add(Passager **, int &, Passager *);
     int friend find(Passager **, int &, int);
+
+    void friend avions_router();
+    void friend passagers_router();
+    void friend vols_router();
 };
 
 #endif

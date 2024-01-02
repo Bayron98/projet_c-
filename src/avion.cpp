@@ -11,13 +11,12 @@ void Avion::fill(){
     cout << "Entrez la capacité: "; cin >>_capacite;
     cout << "Entrez la date de fabrication (YYYY-MM-DD): ";
     string date;
-    int i = 0;
-    do{
-        if (i != 0){cout << "Date invalide"<<endl;}
+    while(true){
         cin >> date;
+        if (!check_date(date)){cout << "Date invalide"<<endl;continue;}
         _date_fabrication = from_string(date);
-        i++;
-    }while(!check_date(date));
+        break;
+    }
 
     cout << "Entrez le nombre de vols assurés: "; cin >>_nbr_vols;
 
