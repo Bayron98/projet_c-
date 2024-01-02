@@ -148,13 +148,18 @@ bool Vol::add(Passager *p)
 }
 void Vol::show_less10()
 {
+    int j = 0;
     for (int i = 0; i < _nbr_passagers; i++)
     {
         if (_passagers[i]->age() < 10)
         {
             _passagers[i]->details();
             cout << "#######################" << endl;
+            j++;
         }
+    }
+    if(j == 0){
+        cout << "Aucun"<<endl;
     }
 }
 

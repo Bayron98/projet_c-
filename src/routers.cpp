@@ -32,6 +32,7 @@ void avions_router(Avion **&avions, int &nbr_avions)
         }
         case 's':
         {
+            cout << "Entrez le code de l'avion: ";
             string code;
             cin >> code;
             int i = find(avions, nbr_avions, code);
@@ -84,6 +85,7 @@ void passagers_router(Passager **&passagers, int &nbr_passagers, Vol **&vols, in
         }
         case 's':
         {
+            cout << "Entrez l'identifiant du passager: ";
             string code;
             cin >> code;
             int i = find(passagers, nbr_passagers, stoi(code));
@@ -100,7 +102,7 @@ void passagers_router(Passager **&passagers, int &nbr_passagers, Vol **&vols, in
         case 'v':
         {
             string code;
-            cout << "Entrez le code passager: ";
+            cout << "Entrez l'identifiant du passager: ";
             cin >> code;
             int index = find(passagers, nbr_passagers, stoi(code));
             if (index == -1)
@@ -163,7 +165,7 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
                 Vol *v = new Vol();
                 v->fill();
                 cout << "Ajoutez l'avion souhaitez: " << endl;
-                cout << " Voici la liste des avions disponibles: " << endl;
+                cout << "Voici la liste des avions disponibles: " << endl;
                 details(avions, nbr_avions);
                 string code;
                 cin >> code;
@@ -208,6 +210,7 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
         }
         case '2':
         {
+            cout << "Entrez le code du vol: ";
             string code;
             cin >> code;
             int i = find(vols, nbr_vols, stoi(code));
@@ -223,6 +226,7 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
         }
         case '3':
         {
+            cout << "Entrez le code du vol: ";
             string code;
             cin >> code;
             int i = find(vols, nbr_vols, stoi(code));
@@ -361,7 +365,13 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
                 }
                 else
                 {
-                    vols[i]->remove(passagers[j]);
+                    if(vols[i]->find(passagers[j]) == -1){
+                        cout << "Passager introuvable dans le vol" << endl;
+                    }else{
+                        vols[i]->remove(passagers[j]);
+                        cout << "Passager supprimé" << endl;
+
+                    }
                 }
                 break;
             }

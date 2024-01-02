@@ -48,6 +48,8 @@ void App::run()
     do
     {
         cout << endl;
+        cout << endl;
+        cout << endl;
         cout << "##########################################################" << endl;
         cout << "Application de gestion de vols (pour quitter cliquez sur q)" << endl;
         cout << "##########################################################" << endl;
