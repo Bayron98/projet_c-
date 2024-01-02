@@ -11,8 +11,8 @@
 
 using namespace std;
 
-void avions_router(Avion **, int &);
-void passagers_router(Passager **, int &);
-void vols_router();
+void avions_router(Avion **&, int &);
+void passagers_router(Passager **&, int &, Vol **&, int &);
+void vols_router(Vol **&, int &, Avion **&, int &, Passager **&, int &);
 
 #endif
