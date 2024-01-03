@@ -123,7 +123,7 @@ void passagers_router(Passager **&passagers, int &nbr_passagers, Vol **&vols, in
                 }
                 if (j == 0)
                 {
-                    cout << "Aucun vol"<<endl;
+                    cout << "Aucun vol" << endl;
                 }
             }
             break;
@@ -147,8 +147,9 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
         cout << "5: pour modifier date d'un vol" << endl;
         cout << "6: pour afficher les vols de lendemain" << endl;
         cout << "7: pour afficher les passagers moins de 10 ans d'un vol" << endl;
-        cout << "8: pour supprimer un passager d'un vol" << endl;
-        cout << "9: pour afficher les détails" << endl;
+        cout << "8: pour ajouter des passagers à un vol" << endl;
+        cout << "9: pour supprimer un passager d'un vol" << endl;
+        cout << "0: pour afficher les détails" << endl;
         cout << "q: pour quitter" << endl;
         cin >> input;
         switch (input)
@@ -168,15 +169,29 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
                 cout << "Voici la liste des avions disponibles: " << endl;
                 details(avions, nbr_avions);
                 string code;
-                cin >> code;
-                int index = find(avions, nbr_avions, code);
-                while (index == -1)
+                int index;
+                while (true)
                 {
-                    cout << "Aucune avion ne correspond au code entré" << endl;
-                    cin >> code;
-                    index = find(avions, nbr_avions, code);
+                    try
+                    {
+                        cin >> code;
+                        index = find(avions, nbr_avions, code);
+                        if (index == -1)
+                        {
+                            cout << "Aucune avion ne correspond au code entré" << endl;
+                        }
+                        else
+                        {
+                            v->avion(avions[index]);
+                            break;
+                        }
+                    }
+                    catch (const exception &e)
+                    {
+                        cout << "Commande non reconnue" << endl;
+                    }
                 }
-                v->avion(avions[index]);
+
                 cout << "Ajoutez les passagers: (Cliquez sur 'q' pour arretez la saisie)" << endl;
                 cout << "Voici la liste des passagers disponibles: " << endl;
                 details(passagers, nbr_passagers);
@@ -190,14 +205,21 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
                     }
                     else
                     {
-                        index = find(passagers, nbr_passagers, stoi(input));
-                        if (index == -1)
+                        try
                         {
-                            cout << "Aucun passager ne correspond au identifiant entré" << endl;
+                            index = find(passagers, nbr_passagers, stoi(input));
+                            if (index == -1)
+                            {
+                                cout << "Aucun passager ne correspond au identifiant entré" << endl;
+                            }
+                            else if (!v->add(passagers[index]))
+                            {
+                                cout << "Ajout échoué" << endl;
+                            }
                         }
-                        else if (!v->add(passagers[index]))
+                        catch (const exception &e)
                         {
-                            cout << "Ajout échoué" << endl;
+                            cout << "Commande non reconnue" << endl;
                         }
                     }
                 }
@@ -355,6 +377,53 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
             }
             else
             {
+                int index;
+                cout << "Ajoutez les passagers: (Cliquez sur 'q' pour arretez la saisie)" << endl;
+                cout << "Voici la liste des passagers disponibles: " << endl;
+                details(passagers, nbr_passagers);
+                string input;
+                while (true)
+                {
+                    cin >> input;
+                    if (input == "q")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            index = find(passagers, nbr_passagers, stoi(input));
+                            if (index == -1)
+                            {
+                                cout << "Aucun passager ne correspond au identifiant entré" << endl;
+                            }
+                            else if (!vols[i]->add(passagers[index]))
+                            {
+                                cout << "Ajout échoué" << endl;
+                            }
+                        }
+                        catch (const exception &e)
+                        {
+                            cout << "Commande non reconnue" << endl;
+                        }
+                    }
+                }
+            }
+            break;
+        }
+        case '9':
+        {
+            cout << "Entrez le code du vol: ";
+            string code;
+            cin >> code;
+            int i = find(vols, nbr_vols, stoi(code));
+            if (i == -1)
+            {
+                cout << "Vol introuvable" << endl;
+            }
+            else
+            {
                 cout << "Entrez le passager à supprimer: ";
                 string id;
                 cin >> id;
@@ -365,12 +434,14 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
                 }
                 else
                 {
-                    if(vols[i]->find(passagers[j]) == -1){
+                    if (vols[i]->find(passagers[j]) == -1)
+                    {
                         cout << "Passager introuvable dans le vol" << endl;
-                    }else{
+                    }
+                    else
+                    {
                         vols[i]->remove(passagers[j]);
                         cout << "Passager supprimé" << endl;
-
                     }
                 }
                 break;
@@ -378,7 +449,7 @@ void vols_router(Vol **&vols, int &nbr_vols, Avion **&avions, int &nbr_avions, P
             break;
         }
 
-        case '9':
+        case '0':
         {
             cout << "Voici la liste des vols disponibles: " << endl;
             details(vols, nbr_vols);

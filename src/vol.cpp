@@ -15,43 +15,58 @@ void Vol::fill()
 {
     cout << "Entrez le code: ";
     cin >> _code;
+    ptime now = second_clock::local_time();
     cout << "Entrez la date de départ (YYYY-MM-DD HH:MM): ";
     {
-        string date,hour;
-        cin >> date>>hour;
-        string full_date = date + " " + hour;
+        string date, hour;
+        string full_date;
         while (true)
         {
+            cin >> date >> hour;
+            full_date = date + " " + hour;
             if (!check_date_time(full_date))
             {
                 cout << "Date invalide" << endl;
-                cin >> date>>hour;
-                full_date = date + " " + hour;
             }
             else
             {
-                _date_depart = time_from_string(full_date);
-                break;
+                ptime date_depart = time_from_string(full_date);
+                if (date_depart > now)
+                {
+                    _date_depart = date_depart;
+                    break;
+                }
+                else
+                {
+                    cout << "Date ancienne" << endl;
+                }
             }
         }
     }
     cout << "Entrez la date d'arrivée (YYYY-MM-DD HH:MM): ";
     {
-        string date,hour;
-        cin >> date>>hour;
-        string full_date = date + " " + hour;
+        string date, hour;
+        string full_date;
         while (true)
         {
+            cin >> date >> hour;
+            full_date = date + " " + hour;
             if (!check_date_time(full_date))
             {
                 cout << "Date invalide" << endl;
-                cin >> date>>hour;
-                full_date = date + " " + hour;
             }
             else
             {
-                _date_arrivee = time_from_string(full_date);
-                break;
+                ptime date_arrivee = time_from_string(full_date);
+                if (date_arrivee > now)
+                {
+                    _date_arrivee = date_arrivee;
+                    break;
+                }
+                else
+                {
+                    cout << "Date ancienne" << endl;
+                }
             }
         }
     }
@@ -69,7 +84,7 @@ void Vol::details()
     for (int i = 0; i < _nbr_passagers; i++)
     {
         _passagers[i]->details();
-        cout <<endl;
+        cout << endl;
     }
 }
 
@@ -158,8 +173,9 @@ void Vol::show_less10()
             j++;
         }
     }
-    if(j == 0){
-        cout << "Aucun"<<endl;
+    if (j == 0)
+    {
+        cout << "Aucun" << endl;
     }
 }
 

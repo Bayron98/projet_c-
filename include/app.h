@@ -26,17 +26,17 @@ public:
     App();
     void run();
     bool router();
-    int friend find(Avion **, int &, string);
-    bool friend add(Avion **, int &, Avion *);
-    bool friend if_exist(Avion **, int &, Avion *);
+    // int friend find(Avion **, int &, string);
+    // bool friend add(Avion **, int &, Avion *);
+    // bool friend if_exist(Avion **, int &, Avion *);
 
-    bool friend if_exist(Passager **, int &, Passager *);
-    bool friend add(Passager **, int &, Passager *);
-    int friend find(Passager **, int &, int);
+    // bool friend if_exist(Passager **, int &, Passager *);
+    // bool friend add(Passager **, int &, Passager *);
+    // int friend find(Passager **, int &, int);
 
-    void friend avions_router();
-    void friend passagers_router();
-    void friend vols_router();
+    // void friend avions_router();
+    // void friend passagers_router();
+    // void friend vols_router();
 };
 
 #endif
